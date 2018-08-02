@@ -295,7 +295,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         let oldIndexPath = IndexPath(item: currentIndex, section: 0)
         let newIndexPath = IndexPath(item: indexPath.item, section: 0)
 
-        let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: collectionViewDidLoad)
+        let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: true)
 
         if pagerBehaviour.isProgressiveIndicator {
             if let changeCurrentIndexProgressive = changeCurrentIndexProgressive {
