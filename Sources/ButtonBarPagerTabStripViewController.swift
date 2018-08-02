@@ -295,7 +295,11 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         let oldIndexPath = IndexPath(item: currentIndex, section: 0)
         let newIndexPath = IndexPath(item: indexPath.item, section: 0)
 
-        let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: true)
+        let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: collectionViewDidLoad)
+        cells.first??.label.font = settings.style.buttonBarItemFont ?? cells.first??.label.font
+        cells.first??.label.textColor = settings.style.buttonBarItemTitleColor ?? cells.first??.label.textColor
+        cells.last??.label.font = settings.style.selectedBarItemFont ?? settings.style.buttonBarItemFont
+        cells.last??.label.textColor = settings.style.selectedButtonBarItemTitleColor ?? settings.style.buttonBarItemTitleColor
 
         if pagerBehaviour.isProgressiveIndicator {
             if let changeCurrentIndexProgressive = changeCurrentIndexProgressive {
