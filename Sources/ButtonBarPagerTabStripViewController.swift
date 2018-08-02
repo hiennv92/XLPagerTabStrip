@@ -247,6 +247,15 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
     open func updateIndicator(for viewController: PagerTabStripViewController, fromIndex: Int, toIndex: Int, withProgressPercentage progressPercentage: CGFloat, indexWasChanged: Bool) {
         guard shouldUpdateButtonBarView else { return }
         buttonBarView.move(fromIndex: fromIndex, toIndex: toIndex, progressPercentage: progressPercentage, pagerScroll: .yes)
+        if progressPercentage == 1 {
+            let oldIndexPath = IndexPath(item: currentIndex != fromIndex ? fromIndex : toIndex, section: 0)
+            let newIndexPath = IndexPath(item: currentIndex, section: 0)
+            let cells = cellForItems(at: [oldIndexPath, newIndexPath], reloadIfNotVisible: collectionViewDidLoad)
+            cells.first??.label.font = settings.style.buttonBarItemFont ?? cells.first??.label.font
+            cells.first??.label.textColor = settings.style.buttonBarItemTitleColor ?? cells.first??.label.textColor
+            cells.last??.label.font = settings.style.selectedBarItemFont ?? settings.style.buttonBarItemFont
+            cells.last??.label.textColor = settings.style.selectedButtonBarItemTitleColor ?? settings.style.buttonBarItemTitleColor
+        }
         if let changeCurrentIndexProgressive = changeCurrentIndexProgressive {
             let oldIndexPath = IndexPath(item: currentIndex != fromIndex ? fromIndex : toIndex, section: 0)
             let newIndexPath = IndexPath(item: currentIndex, section: 0)
