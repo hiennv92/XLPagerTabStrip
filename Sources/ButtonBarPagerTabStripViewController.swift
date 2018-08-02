@@ -56,6 +56,8 @@ public struct ButtonBarPagerTabStripSettings {
         public var buttonBarItemFont = UIFont.systemFont(ofSize: 18)
         public var buttonBarItemLeftRightMargin: CGFloat = 8
         public var buttonBarItemTitleColor: UIColor?
+        public var selectedBarItemFont: UIFont?
+        public var selectedButtonBarItemTitleColor: UIColor?
         @available(*, deprecated: 7.0.0) public var buttonBarItemsShouldFillAvailiableWidth: Bool {
             set {
                 buttonBarItemsShouldFillAvailableWidth = newValue
@@ -325,8 +327,13 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
 
         cell.label.text = indicatorInfo.title
         cell.accessibilityLabel = indicatorInfo.accessibilityLabel
-        cell.label.font = settings.style.buttonBarItemFont
-        cell.label.textColor = settings.style.buttonBarItemTitleColor ?? cell.label.textColor
+        if indexPath.item == currentIndex {
+            cell.label.font = settings.style.selectedBarItemFont ?? settings.style.buttonBarItemFont
+            cell.label.textColor = settings.style.selectedButtonBarItemTitleColor ?? cell.label.textColor
+        } else {
+            cell.label.font = settings.style.buttonBarItemFont
+            cell.label.textColor = settings.style.buttonBarItemTitleColor ?? cell.label.textColor
+        }
         cell.contentView.backgroundColor = settings.style.buttonBarItemBackgroundColor ?? cell.contentView.backgroundColor
         cell.backgroundColor = settings.style.buttonBarItemBackgroundColor ?? cell.backgroundColor
         if let image = indicatorInfo.image {
