@@ -22,12 +22,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+import UIKit
 
 open class ButtonBarViewCell: UICollectionViewCell {
 
     @IBOutlet open var imageView: UIImageView!
     @IBOutlet open var label: UILabel!
+    var settings: ButtonBarPagerTabStripSettings!
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,8 +46,12 @@ open class ButtonBarViewCell: UICollectionViewCell {
             super.isSelected = newValue
             if (newValue) {
                 accessibilityTraits |= UIAccessibilityTraitSelected
+                label.font = settings.style.selectedBarItemFont ?? settings.style.buttonBarItemFont
+                label.textColor = settings.style.selectedButtonBarItemTitleColor ?? settings.style.buttonBarItemTitleColor
             } else {
                 accessibilityTraits &= ~UIAccessibilityTraitSelected
+                label.font = settings.style.buttonBarItemFont 
+                label.textColor = settings.style.buttonBarItemTitleColor ?? label.textColor
             }
         }
     }
