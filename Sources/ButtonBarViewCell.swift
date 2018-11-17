@@ -44,7 +44,7 @@ open class ButtonBarViewCell: UICollectionViewCell {
         set {
             super.isSelected = newValue
             guard settings != nil else { return }
-            if (newValue) {
+            if newValue {
                 accessibilityTraits.insert(.selected)
                 label.font = settings.style.selectedBarItemFont ?? settings.style.buttonBarItemFont
                 label.textColor = settings.style.selectedButtonBarItemTitleColor ?? settings.style.buttonBarItemTitleColor

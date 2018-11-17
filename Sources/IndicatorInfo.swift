@@ -51,7 +51,7 @@ public struct IndicatorInfo {
         self.userInfo = userInfo
     }
     
-    public init(title: String?, accessibilityLabel:String?, image: UIImage?, highlightedImage: UIImage? = nil, userInfo: Any? = nil) {
+    public init(title: String?, accessibilityLabel: String?, image: UIImage?, highlightedImage: UIImage? = nil, userInfo: Any? = nil) {
         self.title = title
         self.accessibilityLabel = accessibilityLabel
         self.image = image
@@ -61,7 +61,7 @@ public struct IndicatorInfo {
 
 }
 
-extension IndicatorInfo : ExpressibleByStringLiteral {
+extension IndicatorInfo: ExpressibleByStringLiteral {
 
     public init(stringLiteral value: String) {
         title = value
