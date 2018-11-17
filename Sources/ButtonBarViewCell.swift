@@ -34,8 +34,7 @@ open class ButtonBarViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)
         
         isAccessibilityElement = true
-        accessibilityTraits |= UIAccessibilityTraitButton
-        accessibilityTraits |= UIAccessibilityTraitHeader
+        accessibilityTraits.insert([.button, .header])
     }
     
     open override var isSelected: Bool {
@@ -46,11 +45,11 @@ open class ButtonBarViewCell: UICollectionViewCell {
             super.isSelected = newValue
             guard settings != nil else { return }
             if (newValue) {
-                accessibilityTraits |= UIAccessibilityTraitSelected
+                accessibilityTraits.insert(.selected)
                 label.font = settings.style.selectedBarItemFont ?? settings.style.buttonBarItemFont
                 label.textColor = settings.style.selectedButtonBarItemTitleColor ?? settings.style.buttonBarItemTitleColor
             } else {
-                accessibilityTraits &= ~UIAccessibilityTraitSelected
+                accessibilityTraits.remove(.selected)
                 label.font = settings.style.buttonBarItemFont 
                 label.textColor = settings.style.buttonBarItemTitleColor ?? label.textColor
             }

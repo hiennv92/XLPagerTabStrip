@@ -163,9 +163,9 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         // register button bar item cell
         switch buttonBarItemSpec! {
         case .nibFile(let nibName, let bundle, _):
-            buttonBarView.register(UINib(nibName: nibName, bundle: bundle), forCellWithReuseIdentifier:"Cell")
+            buttonBarView.register(UINib(nibName: nibName, bundle: bundle), forCellWithReuseIdentifier: "Cell")
         case .cellClass:
-            buttonBarView.register(ButtonBarViewCell.self, forCellWithReuseIdentifier:"Cell")
+            buttonBarView.register(ButtonBarViewCell.self, forCellWithReuseIdentifier: "Cell")
         }
         //-
     }
@@ -357,8 +357,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         }
         cell.isAccessibilityElement = true
         cell.accessibilityLabel = cell.label.text
-        cell.accessibilityTraits |= UIAccessibilityTraitButton
-        cell.accessibilityTraits |= UIAccessibilityTraitHeader
+        cell.accessibilityTraits.insert([.button, .header])
         return cell
     }
 
